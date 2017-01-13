@@ -29,6 +29,8 @@ test:
     - rpfex </dev/null
     - test -f $PREFIX/lib/librpfits.so  # [linux]
     - test -f $PREFIX/lib/librpfits.dylib  # [osx]
+    - conda inspect linkages -p $PREFIX rpfits  # [not win]
+    - conda inspect objects -p $PREFIX rpfits  # [osx]
 
 about:
   home: http://www.atnf.csiro.au/computing/software/rpfits.html
