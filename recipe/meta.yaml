@@ -1,6 +1,6 @@
 {% set name = "rpfits" %}
-{% set version = "2.23" %}
-{% set sha256 = "7fbed9951b16146ee8d02b09f447adb1706e812c33a1026e004b7feb63f221a0" %}
+{% set version = "2.24" %}
+{% set sha256 = "fe25759fb1093e327cdf04739dc30e0f3193c21e2b44deb7ead62d335bd54b25" %}
 
 package:
   name: {{ name|lower }}
@@ -29,12 +29,14 @@ test:
     - rpfex </dev/null
     - test -f $PREFIX/lib/librpfits.so  # [linux]
     - test -f $PREFIX/lib/librpfits.dylib  # [osx]
-    - conda inspect linkages -p $PREFIX rpfits  # [not win]
-    - conda inspect objects -p $PREFIX rpfits  # [osx]
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://www.atnf.csiro.au/computing/software/rpfits.html
-  license: unspecified
+  license: CSIRO Open Source Software Agreement (GPLv3+)
+  license_family: GPL
+  license_file: COPYING
   summary: 'Library for reading and writing a FITS-like data format'
 
 extra:
