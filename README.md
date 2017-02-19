@@ -3,7 +3,7 @@ About rpfits
 
 Home: http://www.atnf.csiro.au/computing/software/rpfits.html
 
-Package license: unspecified
+Package license: CSIRO Open Source Software Agreement (GPLv3+)
 
 Feedstock license: BSD 3-Clause
 
