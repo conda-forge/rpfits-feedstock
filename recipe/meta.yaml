@@ -12,14 +12,14 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
 requirements:
   build:
     - gcc  # [osx]
-    - libgfortran  # [unix]
+    - libgfortran  # [linux]
     - toolchain
   run:
     - libgfortran  # [unix]
