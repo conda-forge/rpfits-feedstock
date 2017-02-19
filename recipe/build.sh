@@ -24,7 +24,6 @@ if [ -n "$OSX_ARCH" ] ; then
     SOEXT=dylib # see other choice; there's a reason we're not using $SHLIB_EXT
     SOFLAGS=(
 	-dynamiclib
-	-static-libgfortran
 	-install_name '@rpath/librpfits.dylib'
 	-compatibility_version 1.0.0
 	-current_version 1.0.0
@@ -33,6 +32,15 @@ if [ -n "$OSX_ARCH" ] ; then
     EXEFLAGS=(
 	-dynamic
     )
+
+    # See pgplot-feedstock:recipe/build.sh for an explanation of what's going
+    # on here. A bad path in the `gcc` package propagates into our dylib
+    # without this workaround.
+    for name in gcc_ext.10.4 gcc_ext.10.5 ; do
+        badlib="$PREFIX/lib/lib${name}.dylib"
+        rm -f "$badlib"
+        ln -s "libgcc_s.1.dylib" "$badlib"
+    done
 else
     SOEXT=so.0 # note: the ".0" makes this not the same as $SHLIB_EXT
     SOFLAGS=(
