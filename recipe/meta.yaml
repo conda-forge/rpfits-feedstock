@@ -1,18 +1,17 @@
 {% set name = "rpfits" %}
 {% set version = "2.24" %}
-{% set sha256 = "fe25759fb1093e327cdf04739dc30e0f3193c21e2b44deb7ead62d335bd54b25" %}
+{% set sha256 = "b305ebcc6b36c543f5921f3370f978e660a1ef033a94b0e8159a551eaefeeb5c" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: http://newton.cx/~peter/files/{{ name }}-{{ version }}.tar.gz
+  url: ftp://ftp.atnf.csiro.au/pub/software/rpfits/rpfits-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 1002
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
@@ -20,18 +19,11 @@ requirements:
   build:
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
-  host:
-    - libgfortran-ng >=3.0  # [osx]
-    - libgfortran-ng >=4.9  # [linux]
-  run:
 
 test:
   commands:
     - rpfex </dev/null
-    - test -f $PREFIX/lib/librpfits.so  # [linux]
-    - test -f $PREFIX/lib/librpfits.dylib  # [osx]
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - test -f $PREFIX/lib/librpfits$SHLIB_EXT  # [linux]
 
 about:
   home: http://www.atnf.csiro.au/computing/software/rpfits.html
