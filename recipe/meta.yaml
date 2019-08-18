@@ -1,6 +1,6 @@
 {% set name = "rpfits" %}
-{% set version = "2.24" %}
-{% set sha256 = "b305ebcc6b36c543f5921f3370f978e660a1ef033a94b0e8159a551eaefeeb5c" %}
+{% set version = "2.25" %}
+{% set sha256 = "457c161e5f6a4f232240e501f9d4303c0bdbab8ae2271767d4f06ad1789ad79f" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1002
+  number: 0
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
